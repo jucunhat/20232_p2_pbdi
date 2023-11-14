@@ -1,20 +1,25 @@
---Exercicio 2
-CREATE OR REPLACE TRIGGER tg_validador_de_numero_negativo
-BEFORE INSERT OR UPDATE ON tb_top_youtubers
-FOR EACH ROW 
-EXECUTE PROCEDURE fn_sem_valor_negativo()
+-- Exercicio 3
+ALTER TABLE tb_top_youtubers ADD COLUMN ativo INTEGER DEFAULT 1 CHECK (ativo IN (0, 1));
+--testando
+INSERT INTO tb_top_youtubers(ativo) VALUES (2)
 
-CREATE OR REPLACE FUNCTION fn_sem_valor_negativo()
-RETURNS TRIGGER 
-LANGUAGE plpgsql AS $$
-BEGIN  
-  IF NEW.rank > 0 AND NEW.video_count > 0 AND NEW.video_views > 0 AND NEW.started > 0 THEN
-    RETURN NEW;
-  ELSE
-    RETURN NULL;
-  END IF;
-END;
-$$
+-- --Exercicio 2
+-- CREATE OR REPLACE TRIGGER tg_validador_de_numero_negativo
+-- BEFORE INSERT OR UPDATE ON tb_top_youtubers
+-- FOR EACH ROW 
+-- EXECUTE PROCEDURE fn_sem_valor_negativo()
+
+-- CREATE OR REPLACE FUNCTION fn_sem_valor_negativo()
+-- RETURNS TRIGGER 
+-- LANGUAGE plpgsql AS $$
+-- BEGIN  
+--   IF NEW.rank > 0 AND NEW.video_count > 0 AND NEW.video_views > 0 AND NEW.started > 0 THEN
+--     RETURN NEW;
+--   ELSE
+--     RETURN NULL;
+--   END IF;
+-- END;
+-- $$
 
 -- select * from tb_top_youtubers
 -- DROP TABLE tb_top_youtubers
