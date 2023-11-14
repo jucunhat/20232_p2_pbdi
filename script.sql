@@ -1,7 +1,15 @@
--- Exercicio 3
-ALTER TABLE tb_top_youtubers ADD COLUMN ativo INTEGER DEFAULT 1 CHECK (ativo IN (0, 1));
---testando
-INSERT INTO tb_top_youtubers(ativo) VALUES (2)
+-- Exercicio 4
+CREATE TABLE log(
+  cod_log SERIAL PRIMARY KEY,
+  nome_youtuber varchar(200),
+  categoria VARCHAR(200),
+  inicio INT  
+);
+
+-- -- Exercicio 3
+-- ALTER TABLE tb_top_youtubers ADD COLUMN ativo INTEGER DEFAULT 1 CHECK (ativo IN (0, 1));
+-- --testando
+-- INSERT INTO tb_top_youtubers(ativo) VALUES (2)
 
 -- --Exercicio 2
 -- CREATE OR REPLACE TRIGGER tg_validador_de_numero_negativo
